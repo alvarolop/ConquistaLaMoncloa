@@ -16,10 +16,18 @@ public class Resource implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long user;
+	private String titulo;
+	private String url_foto;
 	private List<Long> propuestas;
 
 	public Resource(Long user) {
 		this.user = user;
+	}
+
+	public Resource(Long user, String titulo, String img_url) {
+		this.user = user;
+		this.titulo = titulo;
+		this.url_foto = img_url;
 	}
 
 	public Long getId() {
@@ -44,6 +52,22 @@ public class Resource implements Serializable {
 
 	public void setUser(Long user) {
 		this.user = user;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getUrl_foto() {
+		return url_foto;
+	}
+
+	public void setUrl_foto(String url_foto) {
+		this.url_foto = url_foto;
 	}
 
 }

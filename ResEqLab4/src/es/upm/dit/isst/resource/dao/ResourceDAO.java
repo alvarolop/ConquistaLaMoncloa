@@ -27,4 +27,6 @@ public interface ResourceDAO {
 	public void removeReserve(String reserveId, String resourceId);
 
 	public void add(long parseLong);
+
+	public void add(Long id, String titulo, String img_url);
 }

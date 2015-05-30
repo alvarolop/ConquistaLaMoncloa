@@ -69,12 +69,19 @@ public class CreatePrograma extends HttpServlet {
 		System.out.println(google_Id);
 		AppUser usuario = daoUser.getUserId(google_Id);
 		// ///
-		// Crear programa
-		if (usuario.isCandidato()) {
-			ResourceDAO dao = ResourceDAOImpl.getInstance();
-			System.out.print(usuario.getId());
-			dao.add(usuario.getId());
+		// Crear programas
+		try {
+			if (usuario.isCandidato()) {
+				String titulo = req.getParameter("titulo");
+				String img_url = req.getParameter("img_url");
+
+				ResourceDAO programadao = ResourceDAOImpl.getInstance();
+				System.out.print(usuario.getId());
+				programadao.add(usuario.getId(), titulo, img_url);
+			}
+		} finally {
 		}
+
 		// //
 
 		RequestDispatcher view = req.getRequestDispatcher("creaPropuestas.jsp");

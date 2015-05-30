@@ -73,33 +73,37 @@
 
 		<table class="table table-striped" style="width: 60%;" align="center">
 			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<c:choose>
-					<c:when test="${userAdmin}">
-						<th>Action</th>
-						<th></th>
-					</c:when>
-				</c:choose>
+				<th>Propuesta</th>
+				<th>Numero de votos</th>
+				<th></th>
+
 			</tr>
-			<c:forEach items="${propuestas}" var="propuesta">
 
-
+			<c:forEach var="propuesta" items="${Map}" varStatus="itemsRow">
 				<tr>
-					<td><c:out value="${propuesta.title}" /></td>
-					<td><c:out value="${propuesta.description}" /></td>
+					<c:forEach items="${propuestas}" var="propuesta2">
+						<c:if test="${propuesta.key eq propuesta2.id}">
+
+							<td><c:out value="${propuesta2.title}" /></td>
+
+						</c:if>
+
+					</c:forEach>
+
+
+
+					<td><c:out value="${propuesta.value}" /></td>
 					<c:choose>
 						<c:when test="${user!=null}">
 							<td><a class="btn btn-danger"
-								href="<c:url value="/votaPropuesta?propuesta_id=${propuesta.id}"/>">Vota</a>
+								href="<c:url value="/votaPropuesta?propuesta_id=${propuesta.key}"/>">Vota</a>
 						</c:when>
 					</c:choose>
-					<!-- <td><c:out value="${reserve.resource}" /></td>-->
-
-
 				</tr>
-
 			</c:forEach>
+
+
+
 			</div>
 
 			<hr />

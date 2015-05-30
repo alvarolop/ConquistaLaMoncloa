@@ -86,7 +86,7 @@
 
 
 				<tr>
-					<td><c:out value="${programa.user}" /></td>
+					<td><c:out value="${programa.titulo}" /></td>
 
 					<!-- <td><c:out value="${reserve.resource}" /></td>-->
 

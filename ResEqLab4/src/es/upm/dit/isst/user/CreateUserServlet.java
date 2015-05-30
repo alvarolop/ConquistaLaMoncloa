@@ -44,7 +44,10 @@ public class CreateUserServlet extends HttpServlet {
 		userdao.add(googleId, email, isCandidato);
 
 		if (isCandidato) {
-			resp.sendRedirect("/createPrograma");
+			String titulo = req.getParameter("title");
+			String img_url = req.getParameter("img_url");
+			resp.sendRedirect("/createPrograma?titulo=" + titulo + "&img_url="
+					+ img_url);
 		} else {
 			resp.sendRedirect("/main");
 		}

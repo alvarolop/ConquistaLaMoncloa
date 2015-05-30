@@ -45,13 +45,28 @@ public class VotoDAOImpl implements VotoDAO {
 	// }
 
 	@Override
-	public void add(String user_id, String propuesta_id) {
+	public boolean add(String user_id, String propuesta_id) {
+
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Voto t ");
+		System.out.println(q.getResultList());
+		// q.setParameter("userId", userId);
+		List<Voto> votos = q.getResultList();
+		em.close();
+
 		synchronized (this) {
-			EntityManager em = EMFService.get().createEntityManager();
+			EntityManager am = EMFService.get().createEntityManager();
 			Voto voto = new Voto(user_id, propuesta_id);
-			em.persist(voto);
-			em.close();
+			for (Voto voto2 : votos)
+				if (voto.getUser_id().equals(voto2.getUser_id())
+						&& voto.getPropuesta_id().equals(
+								voto2.getPropuesta_id()))
+					return false;
+			am.persist(voto);
+			am.close();
 		}
+
+		return true;
 	}
 
 	@Override
@@ -65,4 +80,16 @@ public class VotoDAOImpl implements VotoDAO {
 		}
 	}
 
+	@Override
+	public int numVotoPropuesta(String propuesta_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Voto t ");
+		System.out.println(q.getResultList());
+		List<Voto> votos = q.getResultList();
+		int cuenta = 0;
+		for (Voto voto : votos)
+			if (voto.getPropuesta_id().equals(propuesta_id))
+				cuenta++;
+		return cuenta;
+	}
 }

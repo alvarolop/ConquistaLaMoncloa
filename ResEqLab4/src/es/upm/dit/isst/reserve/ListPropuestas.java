@@ -3,13 +3,18 @@ package es.upm.dit.isst.reserve;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import votos.dao.VotoDAO;
+import votos.dao.VotoDAOImpl;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -66,14 +71,24 @@ public class ListPropuestas extends HttpServlet {
 			// System.out.println(reserves);
 
 			// ///////////////Gestion de req y resp////////////////////////////
+			VotoDAO votodao = VotoDAOImpl.getInstance();
+
+			Map<Long, Integer> numVotos = new HashMap<Long, Integer>();
+
+			for (Reserve propuesta : reserves) {
+				int votos = votodao.numVotoPropuesta(Long.toString(propuesta
+						.getId()));
+				numVotos.put(propuesta.getId(), Integer.valueOf(votos));
+
+			}
 
 			req.getSession().setAttribute("user", user);
-			req.getSession().setAttribute("resources",
-					new ArrayList<Resource>(resources));
+
 			req.getSession().setAttribute("propuestas",
 					new ArrayList<Reserve>(reserves));
 			req.getSession().setAttribute("url", url);
 			req.getSession().setAttribute("urlLinktext", urlLinktext);
+			req.setAttribute("Map", numVotos);
 
 			RequestDispatcher view = req
 					.getRequestDispatcher("listPropuestas.jsp");

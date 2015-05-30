@@ -13,6 +13,20 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <meta charset="utf-8">
+<script type="text/javascript">
+	function showHideCheck() {
+		if (document.getElementById('candidato').checked) {
+			document.getElementById('ifCandidato').style.display = 'block'
+			document.getElementById('ifCandidato2').style.display = 'block'
+		} else {
+			document.getElementById('ifCandidato').style.display = 'none'
+			document.getElementById('ifCandidato2').style.display = 'none'
+		}
+	}
+	function encode(String uri){
+		encodeURI(uri)
+	}
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -82,18 +96,30 @@
 		</div>
 	</c:if>
 
-	<form action="/createUser" method="post" accept-charset="utf-8">
+	<form action="/createUser" method="post" accept-charset="utf-8"
+		id="formulario">
 		<table class="table" style="width: 80%;" align="center">
 
 			<tr>
 				<td valign="available"><label for="available">¿Quiere
 						ser candidato?</label></td>
-				<td><input type="radio" name="available" id="available"
-					value="1" checked>Candidato <input type="radio"
-					name="available" id="available" value="0">Votante</td>
+				<td><input type="radio" name="available" id="candidato"
+					value="1" checked onclick="showHideCheck()">Candidato <input
+					type="radio" name="available" id="votante" value="0"
+					onclick="showHideCheck()">Votante</td>
 
 			</tr>
+			<tr id='ifCandidato'>
+				<td><label for="title">Title</label></td>
+				<td><input class="form-control" type="text" name="title"
+					id="title" size="65" /></td>
 
+			</tr>
+			<tr id="ifCandidato2">
+				<td><label for="img_url">Url de la Imagen</label></td>
+				<td><input class="form-control" type="url" name="img_url"
+					id="img_url" size="65" /></td>
+			</tr>
 			<tr>
 				<td colspan="2" align="right"><input type="submit"
 					value="Aceptar" /></td>

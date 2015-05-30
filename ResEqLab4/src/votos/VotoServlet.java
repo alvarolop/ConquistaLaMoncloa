@@ -74,7 +74,7 @@ public class VotoServlet extends HttpServlet {
 		String propuesta_id = req.getParameter("propuesta_id");
 		String user_id = user.getUserId();
 		votodao.add(user_id, propuesta_id);
-		resp.sendRedirect("/main");
+		resp.sendRedirect("/listPropuestas");
 
 	}
 }
