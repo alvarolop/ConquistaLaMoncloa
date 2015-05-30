@@ -75,7 +75,7 @@
 			<c:forEach var="i" begin="0" end="1">
 				<tr>
 					<c:forEach var="i" begin="0" end="4">
-						<td><a href="/perfilPrograma"><img src='http://static.guiainfantil.com/pictures/1111-4-dibujo-para-imprimir-y-colorear-de-una-mano.jpg' width='200' height='133'></a></a></td>
+						<td><a href="/listPropuestas"><img src='http://static.guiainfantil.com/pictures/1111-4-dibujo-para-imprimir-y-colorear-de-una-mano.jpg' width='200' height='133'></a></a></td>
 					</c:forEach>
 				</tr>
 			</c:forEach>
