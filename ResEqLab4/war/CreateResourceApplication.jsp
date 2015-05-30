@@ -32,16 +32,14 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/main"><span class="glyphicon glyphicon-home">
 						</span> Home</a></li>
-					<li><a href="/map"><span class="glyphicon glyphicon-th">
-						</span> Map</a></li>
 					<li><a href="/reserve"><span
-							class="glyphicon glyphicon-tasks"> </span> Reserve</a></li>
+							class="glyphicon glyphicon-tasks"> </span> Programas</a></li>
 					<c:choose>
 						<c:when test="${userAdmin}">
 							<li><a href="/create"><span
-									class="glyphicon glyphicon-pencil"></span> Create</a></li>
+									class="glyphicon glyphicon-pencil"></span> Crear Programa</a></li>
 							<li><a href="/listReserves"><span
-									class="glyphicon glyphicon-tasks"></span> Reserves</a></li>
+									class="glyphicon glyphicon-tasks"></span> Propuestas</a></li>
 							<li><a href="/stats"> <span
 									class="glyphicon glyphicon-tasks"></span> Statistics
 							</a></li>
@@ -69,7 +67,7 @@
 	<div style="width: 100%;">
 		<div class="line"></div>
 		<div class="topLine">
-			<h1 style="text-align: center">New resource</h1>
+			<h1 style="text-align: center">Nueva Propuesta</h1>
 			<div style="float: right;"></div>
 		</div>
 	</div>
@@ -80,7 +78,7 @@
 			</div>
 		</c:if>
 
-		<form action="/new" method="post" accept-charset="utf-8">
+		<form action="/createPropuesta" method="post" accept-charset="utf-8">
 			<table class="table" style="width: 60%;" align="center">
 				<tr>
 					<td><label for="title">Title</label></td>
@@ -92,12 +90,7 @@
 					<td><textarea class="form-control" rows="4" cols="50"
 							name="description" id="description"></textarea></td>
 				</tr>
-				<tr>
-					<td valign="sessionTime"><label for="sessionTime">Session
-							Time</label></td>
-					<td><input class="form-control" type="number"
-						name="sessionTime" id="sessionTime" min="1" max="5"></td>
-				</tr>
+
 
 				<tr>
 					<td colspan="2" align="right"><input type="submit"

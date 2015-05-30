@@ -16,28 +16,15 @@ public class AppUser implements Serializable {
 	private Long id;
 	private String googleId;
 	private String correo;
-	private int level;
+	private boolean isCandidato;
 	
-	public AppUser(String googleId, String name, int level){
+	public AppUser(String googleId, String name, boolean isCandidato){
 		this.setGoogleId(googleId);
 		this.setCorreo(name);
-		this.setLevel(level);
+		this.setCandidato(isCandidato);
 	}
 	public Long getId() {
 		return id;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	public String getCorreo() {
-		return correo;
-	}
-	public void setCorreo(String correo) {
-		this.correo = correo;
 	}
 	public String getGoogleId() {
 		return googleId;
@@ -45,4 +32,17 @@ public class AppUser implements Serializable {
 	public void setGoogleId(String googleId) {
 		this.googleId = googleId;
 	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public boolean isCandidato() {
+		return isCandidato;
+	}
+	public void setCandidato(boolean candidato) {
+		this.isCandidato = candidato;
+	}
+
 }

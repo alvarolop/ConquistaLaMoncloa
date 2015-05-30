@@ -23,24 +23,19 @@ public class CreateResourceServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private void alertHTML(PrintWriter out, String message) throws IOException {
-		out.println("<script type=\"text/javascript\">");
-		out.println("alert('" + message + "');");
-		out.println("</script>");
-	}
-
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		// //////////CREATE RESOURCE///////////////////////
-		String title = checkNull(req.getParameter("title"));
-		String Description = checkNull(req.getParameter("description"));
-		int sessionTime = Integer.parseInt(req.getParameter("sessionTime"));
-		ResourceDAO dao = ResourceDAOImpl.getInstance();
-		dao.add(title, Description, sessionTime);
-		PrintWriter out = resp.getWriter();
-		//alertHTML(out, "Creado el recurso " + title + "!!");
-		req.getSession().setAttribute("dialogo", "Recurso Creado Correctamente!");
-		out.println("<script>location='/main';</script>");
+		// String title = checkNull(req.getParameter("title"));
+		// String Description = checkNull(req.getParameter("description"));
+		//
+		// ResourceDAO dao = ResourceDAOImpl.getInstance();
+		// dao.add(title, Description, sessionTime);
+		// PrintWriter out = resp.getWriter();
+		// // alertHTML(out, "Creado el recurso " + title + "!!");
+		// req.getSession().setAttribute("dialogo",
+		// "Recurso Creado Correctamente!");
+		// out.println("<script>location='/main';</script>");
 
 		// resp.sendRedirect("/main");
 	}

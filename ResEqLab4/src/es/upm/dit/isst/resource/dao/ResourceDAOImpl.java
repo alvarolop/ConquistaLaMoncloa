@@ -34,16 +34,16 @@ public class ResourceDAOImpl implements ResourceDAO {
 		return resources;
 	}
 
-	@Override
-	public void add(String title, String description, int sessionTime) {
-		synchronized (this) {
-			EntityManager em = EMFService.get().createEntityManager();
-			Resource resource = new Resource(title, description, sessionTime);
-			em.persist(resource);
-			em.close();
-		}
-
-	}
+	// @Override
+	// public void add(Long user) {
+	// synchronized (this) {
+	// EntityManager em = EMFService.get().createEntityManager();
+	// Resource resource = new Resource(user);
+	// em.persist(resource);
+	// em.close();
+	// }
+	//
+	// }
 
 	@Override
 	public List<Resource> getResources() {
@@ -77,7 +77,7 @@ public class ResourceDAOImpl implements ResourceDAO {
 			// } else {
 			System.out.println(reserveid);
 
-			resource.addReserve(reserveid);
+			// resource.addReserve(reserveid);
 			em.merge(resource);
 			System.out.println("Reservo");
 
@@ -107,10 +107,10 @@ public class ResourceDAOImpl implements ResourceDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
 			Resource resource = em.find(Resource.class, resourceId);
-			resource.setTitle(title);
-			resource.setDescription(description);
-			resource.setSessionTime(sessionTime);
-			resource.setAvailable(available);
+			// resource.setTitle(title);
+			// resource.setDescription(description);
+			// resource.setSessionTime(sessionTime);
+			// resource.setAvailable(available);
 			em.merge(resource);
 		} finally {
 			em.close();
@@ -128,12 +128,34 @@ public class ResourceDAOImpl implements ResourceDAO {
 		try {
 			Resource resource = em.find(Resource.class,
 					Long.parseLong(resourceId));
-			resource.removeReserve(reserveId);
+			// resource.removeReserve(reserveId);
 			em.merge(resource);
 		} finally {
 			em.close();
 		}
 
+	}
+
+	// @Override
+	// public void add(String title, String description, int sessionTime) {
+	// // TODO Auto-generated method stub
+	//
+	// }
+
+	@Override
+	public void add(String title, String description) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void add(long parseLong) {
+		synchronized (this) {
+			EntityManager em = EMFService.get().createEntityManager();
+			Resource resource = new Resource(parseLong);
+			em.persist(resource);
+			em.close();
+		}
 	}
 
 	// @Override

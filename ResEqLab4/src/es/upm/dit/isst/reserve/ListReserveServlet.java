@@ -71,7 +71,7 @@ public class ListReserveServlet extends HttpServlet {
 			ResourceDAO resourcedao = ResourceDAOImpl.getInstance();
 
 			reserves = new ArrayList<Reserve>();
-			reserves = reservedao.getReserves();
+			reserves = reservedao.getPropuestas();
 			List<Resource> resources = null;
 			// Si no eres admin, solo ves las tuyas
 			if (!userAdmin && (user != null)) {// LEVEL en vez de admin

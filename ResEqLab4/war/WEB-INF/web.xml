@@ -76,7 +76,39 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>PlaceResource</servlet-name>
 		<servlet-class>es.upm.dit.isst.lab.ModifylabServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CreatePropuesta</servlet-name>
+		<servlet-class>es.upm.dit.isst.reserve.CreatePropuestaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CreatePrograma</servlet-name>
+		<servlet-class>es.upm.dit.isst.resource.CreatePrograma</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListPrograma</servlet-name>
+		<servlet-class>es.upm.dit.isst.resource.ListProgramas</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListPropuestas</servlet-name>
+		<servlet-class>es.upm.dit.isst.reserve.ListPropuestas</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>ListPrograma</servlet-name>
+		<url-pattern>/listProgramas</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListPropuestas</servlet-name>
+		<url-pattern>/listPropuestas</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatePrograma</servlet-name>
+		<url-pattern>/createPrograma</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreatePropuesta</servlet-name>
+		<url-pattern>/createPropuesta</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PlaceResource</servlet-name>
 		<url-pattern>/placeResource</url-pattern>

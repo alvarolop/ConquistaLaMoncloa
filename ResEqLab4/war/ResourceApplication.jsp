@@ -33,22 +33,11 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/main"><span class="glyphicon glyphicon-home">
-						</span> Home</a></li>
-					<li><a href="/map"><span class="glyphicon glyphicon-th">
-						</span> Map</a></li>
-					<li><a href="/reserve"><span
-							class="glyphicon glyphicon-tasks"> </span> Reserve</a></li>
-					<c:choose>
-						<c:when test="${userAdmin}">
-							<li><a href="/create"><span
-									class="glyphicon glyphicon-pencil"></span> Create</a></li>
-							<li><a href="/listReserves"><span
-									class="glyphicon glyphicon-tasks"></span> Reserves</a></li>
-							<li><a href="/stats"> <span
-									class="glyphicon glyphicon-tasks"></span> Statistics
-							</a></li>
-						</c:when>
-					</c:choose>
+						</span> Inicio</a></li>
+					<li><a href="/listProgramas"><span
+							class="glyphicon glyphicon-th"> </span> Programas</a></li>
+					<li><a href="/listPropuestas"><span
+							class="glyphicon glyphicon-tasks"> </span> Propuetas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -93,26 +82,6 @@
 					</c:when>
 				</c:choose>
 			</tr>
-
-			<c:forEach items="${resources}" var="resource">
-				<tr>
-					<td><c:out value="${resource.title}" /></td>
-					<td><c:out value="${resource.description}" /></td>
-					<c:choose>
-						<c:when test="${userAdmin}">
-							<td><a class="btn btn-danger"
-								href="<c:url value="/remove?id=${resource.id}" />">Remove</a></td>
-							<td><a class="btn btn-warning"
-								href="<c:url value="/modifyResource?resourceId=${resource.id}" />">Modify</a></td>
-							<td><a class="btn btn-primary"
-								href="<c:url value="/placeResource?resourceId=${resource.id}" />">Place</a></td>
-						</c:when>
-					</c:choose>
-
-				</tr>
-			</c:forEach>
-		</table>
-
 	</div>
 
 	<hr />

@@ -44,7 +44,7 @@ public class ModifyReserveServlet extends HttpServlet {
 			ResourceDAO dao = ResourceDAOImpl.getInstance();
 
 			Resource resource = dao.getResource(Long.parseLong(resId));
-			String title = resource.getTitle();
+			String title = "";// resource.getTitle();
 			int sessionTime = Integer.parseInt(req.getParameter("sessionTime"));
 			String endhour = starthour;
 
@@ -75,17 +75,19 @@ public class ModifyReserveServlet extends HttpServlet {
 			// COMPROBAMOS QUE EL RECURSO NO ESTA OCUPADO EN ESE MOMENTO
 			ReserveDAO reservedao = ReserveDAOImpl.getInstance();
 			List<Reserve> reserves = new ArrayList<Reserve>();
-			reserves = reservedao.getReserves();
+			reserves = reservedao.getPropuestas();
 			// Comprobacion para que no coincida con otra reserva
 			for (Reserve reserved : reserves) {
 			}
 			try {
-				reservedao.update(Long.parseLong(reserveId), start, end);
-				//alertHTML(out, "Modificada la reserva !!");
-				req.getSession().setAttribute("dialogo", "Reserva modificada Correctamente!");
-				resp.sendRedirect("/updatemail?title="+title+"&date="+startdate+"&mishoras="+starthour);
+				// reservedao.update(Long.parseLong(reserveId), start, end);
+				// alertHTML(out, "Modificada la reserva !!");
+				req.getSession().setAttribute("dialogo",
+						"Reserva modificada Correctamente!");
+				resp.sendRedirect("/updatemail?title=" + title + "&date="
+						+ startdate + "&mishoras=" + starthour);
 			} finally {
-				//resp.sendRedirect("/listReserves");
+				// resp.sendRedirect("/listReserves");
 				out.println("<script>location='/listReserves';</script>");
 
 			}
@@ -104,8 +106,8 @@ public class ModifyReserveServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		
-		req.getSession().setAttribute("dialogo","");
+
+		req.getSession().setAttribute("dialogo", "");
 		// //////////////////USER//////////////////////
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
@@ -128,15 +130,16 @@ public class ModifyReserveServlet extends HttpServlet {
 			ResourceDAO resourcedao = ResourceDAOImpl.getInstance();
 
 			// System.out.println(reserveId);
-			Reserve reserve = dao.getReserve(Long.parseLong(reserveId));
+			// Reserve reserve = dao.getReserve(Long.parseLong(reserveId));
 
-			req.getSession().setAttribute("resourceId", reserve.getResource());
+			// req.getSession().setAttribute("resourceId",
+			// reserve.getResource());
 			req.getSession().setAttribute("reserveId", reserveId);
-			req.getSession().setAttribute("resource",
-					resourcedao.getResource(reserve.getResource()));
+			// req.getSession().setAttribute("resource",
+			// resourcedao.getResource(reserve.getResource()));
 
 			req.getSession().setAttribute("user", user);
-			req.getSession().setAttribute("reserve", reserve);
+			// req.getSession().setAttribute("reserve", reserve);
 			req.getSession().setAttribute("url", url);
 			req.getSession().setAttribute("urlLinktext", urlLinktext);
 

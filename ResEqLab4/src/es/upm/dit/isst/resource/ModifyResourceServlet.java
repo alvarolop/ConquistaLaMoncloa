@@ -62,8 +62,8 @@ public class ModifyResourceServlet extends HttpServlet {
 		ResourceDAO dao = ResourceDAOImpl.getInstance();
 
 		Resource resource = dao.getResource(Long.parseLong(resourceId));
-		String description = resource.getDescription();
-		String title = resource.getTitle();
+		String description = "";
+		String title = "";
 
 		req.getSession().setAttribute("title", title);
 		req.getSession().setAttribute("description", description);
@@ -93,7 +93,8 @@ public class ModifyResourceServlet extends HttpServlet {
 			String title = checkNull(req.getParameter("title"));
 			String description = checkNull(req.getParameter("description"));
 			String availableString = req.getParameter("available");
-			int sessionTime = Integer.parseInt(check(req.getParameter("sessionTime")));
+			int sessionTime = Integer.parseInt(check(req
+					.getParameter("sessionTime")));
 			// System.out.println("availableStringeq: " + availableString);
 			int a = Integer.parseInt(availableString);
 			// System.out.println("a: " + a);
@@ -104,8 +105,9 @@ public class ModifyResourceServlet extends HttpServlet {
 			try {
 				daoresource.modifyResource(Long.parseLong(resourceId), title,
 						description, sessionTime, available);
-				//alertHTML(out, "Recurso modificado!!");
-				req.getSession().setAttribute("dialogo", "Recurso Modificado Correctamente!");
+				// alertHTML(out, "Recurso modificado!!");
+				req.getSession().setAttribute("dialogo",
+						"Recurso Modificado Correctamente!");
 
 			} finally {
 				out.println("<script>location='/main';</script>");
@@ -123,6 +125,7 @@ public class ModifyResourceServlet extends HttpServlet {
 		}
 		return s;
 	}
+
 	private String check(String s) {
 		if (s.equals("")) {
 			return "1";

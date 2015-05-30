@@ -119,52 +119,52 @@ public class ReservarResourceServlet extends HttpServlet {
 			// COMPROBAMOS QUE EL RECURSO NO ESTA OCUPADO EN ESE MOMENTO
 			ReserveDAO reservedao = ReserveDAOImpl.getInstance();
 			List<Reserve> reserves = new ArrayList<Reserve>();
-			reserves = reservedao.getReserves();
-			Reserve reserve2 = new Reserve(start, end, user,
-					Long.parseLong(resourceId));
-			boolean ocupado = false;
-			for (long reservesId : daoresource.getResource(
-					Long.parseLong(resourceId)).getReserves()) {
-				// TODO:Reserve comprobation
-				Reserve reserve = reservedao.getReserve(reservesId);
-				System.out.println("reserveId" + reservesId + "ResourceID"
-						+ resourceId + "Reserve2" + reserve2);
-				if (reserve.ocupado(reserve2))
-					ocupado = true;
-			}
-			System.out.println("Esta ocupado?  " + ocupado);
+			reserves = reservedao.getPropuestas();
+//			Reserve reserve2 = new Reserve(start, end, user,
+//					Long.parseLong(resourceId));
+//			boolean ocupado = false;
+//			for (long reservesId : daoresource.getResource(
+//					Long.parseLong(resourceId)).getPropuestas()) {
+//				// TODO:Reserve comprobation
+//				Reserve reserve = reservedao.getReserve(reservesId);
+//				System.out.println("reserveId" + reservesId + "ResourceID"
+//						+ resourceId + "Reserve2" + reserve2);
+//				if (reserve.ocupado(reserve2))
+//					ocupado = true;
+//			}
+//			System.out.println("Esta ocupado?  " + ocupado);
 			// /////
 
-			if (!ocupado)
-				reserveid = daoreserve.add(start, end, user,
-						Long.parseLong(resourceId));
-			System.out.println(reserveid);
-
-			PrintWriter out = resp.getWriter();
-			try {
-				if (!ocupado) {
-					System.out.println(reserveid);
-
-					daoresource.addReserve(reserveid, user,
-							Long.parseLong(resourceId));
-					// alertHTML(out, "Reservado el recurso " + title + "!!");
-					req.getSession().setAttribute("dialogo",
-							"Reserva realizada!");
-					// System.out.println("llego aqui");
-					resp.sendRedirect("/mandamail?title=" + title + "&date="
-							+ startdate + "&mishoras=" + starthour);
-				} else {
-					req.getSession().setAttribute("dialogo",
-							"Lo sentimos, esta ocupado a esa hora!");
-				}
-
-			} finally {
-				out.println("<script>location='/reserve';</script>");
-
-			}
-
-		} else {
-			resp.sendRedirect(userService.createLoginURL("/createUser"));
+//			if (!ocupado)
+//				reserveid = daoreserve.add(start, end, user,
+//						Long.parseLong(resourceId));
+//			System.out.println(reserveid);
+//
+//			PrintWriter out = resp.getWriter();
+//			try {
+//				if (!ocupado) {
+//					System.out.println(reserveid);
+//
+//					daoresource.addReserve(reserveid, user,
+//							Long.parseLong(resourceId));
+//					// alertHTML(out, "Reservado el recurso " + title + "!!");
+//					req.getSession().setAttribute("dialogo",
+//							"Reserva realizada!");
+//					// System.out.println("llego aqui");
+//					resp.sendRedirect("/mandamail?title=" + title + "&date="
+//							+ startdate + "&mishoras=" + starthour);
+//				} else {
+//					req.getSession().setAttribute("dialogo",
+//							"Lo sentimos, esta ocupado a esa hora!");
+//				}
+//
+//			} finally {
+//				out.println("<script>location='/reserve';</script>");
+//
+//			}
+//
+//		} else {
+//			resp.sendRedirect(userService.createLoginURL("/createUser"));
 		}
 
 	}

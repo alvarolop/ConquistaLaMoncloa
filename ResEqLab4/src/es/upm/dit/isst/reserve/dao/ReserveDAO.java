@@ -13,17 +13,17 @@ public interface ReserveDAO {
 
 	public void remove(long id);
 
-	List<Reserve> listReserves();
+	List<Reserve> listPropuestas();
 
-	List<Reserve> getReserves();
+	List<Reserve> getPropuestas();
 
-	long add(Calendar start, Calendar end, String user, long resource);
+	long add(String title, String description);
 
-	public List<Reserve> getReserves(String nickname);
+//	public List<Propuesta> getPropuestas(String nickname);
 
-	public Reserve getReserve(long parseLong);
+	public Reserve getPropuesta(long parseLong);
 
-	public void update(long id,Calendar start, Calendar end);
+	public void update(long id,String title, String description);
 	
-	public int[][] mapCheck(Resource[][] ResourceMap, Reserve hora);
+	//public int[][] mapCheck(Programa[][] ResourceMap, Propuesta hora);
 }

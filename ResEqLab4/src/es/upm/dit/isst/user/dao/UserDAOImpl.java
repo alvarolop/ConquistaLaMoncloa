@@ -23,10 +23,10 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void add(String googleId, String name, int level) {
+	public void add(String googleId, String name, boolean isCandidato) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
-			AppUser user = new AppUser(googleId, name, level);
+			AppUser user = new AppUser(googleId, name, isCandidato);
 			em.persist(user);
 			em.close();
 		}
@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean appUserExists(String id) {
+	public boolean appUserExists(String google_id) {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from AppUser t ");
 		List<AppUser> users = q.getResultList();
@@ -62,11 +62,26 @@ public class UserDAOImpl implements UserDAO {
 			// System.out.println("AppUserGoogleID: "+(user.getGoogleId()));
 			// System.out.println("GoogleID:        "+id);
 			// System.out.println("Coinciden?"+(user.getGoogleId().equals(id)));
-			if (user.getGoogleId().equals(id))
+			if (user.getGoogleId().equals(google_id))
 				return true;
 		}
 
 		return false;
+	}
+
+	@Override
+	public AppUser getUserId(String google_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from AppUser t ");
+		List<AppUser> users = q.getResultList();
+		for (AppUser user : users) {
+			// System.out.println("AppUserGoogleID: "+(user.getGoogleId()));
+			// System.out.println("GoogleID:        "+id);
+			// System.out.println("Coinciden?"+(user.getGoogleId().equals(id)));
+			if (user.getGoogleId().equals(google_id))
+				return user;
+		}
+		return null;
 	}
 
 }

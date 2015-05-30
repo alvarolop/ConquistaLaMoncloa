@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import es.upm.dit.isst.resource.dao.ResourceDAO;
+import es.upm.dit.isst.resource.dao.ResourceDAOImpl;
+import es.upm.dit.isst.resource.model.Resource;
 import es.upm.dit.isst.user.dao.UserDAO;
 import es.upm.dit.isst.user.dao.UserDAOImpl;
 import es.upm.dit.isst.user.model.AppUser;
@@ -24,25 +27,27 @@ public class CreateUserServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		// System.out.println("Adding atributes for GoogleUser ");
-		//
-		// String nickname = checkNull(req.getParameter("nickname"));
-		// String name = checkNull(req.getParameter("name"));
-		// int level = 0;
-		// System.out.println("Creating new User " + nickname + name + level);
-		//
-		// UserDAO dao = UserDAOImpl.getInstance();
-		// //dao.add(googleId, name, level);
-		//
-		// resp.sendRedirect("/createUser");
+		System.out.println("Adding atributes for GoogleUser ");
+		String availableString = req.getParameter("available");
+		boolean isCandidato = true;
 
-	}
+		int a = Integer.parseInt(availableString);
+		if (a == 0)
+			isCandidato = false;
 
-	private String checkNull(String s) {
-		if (s == null) {
-			return "";
+		UserService userService = UserServiceFactory.getUserService();
+		com.google.appengine.api.users.User user = userService.getCurrentUser();
+
+		String googleId = user.getUserId();
+		String email = user.getEmail();
+		UserDAO userdao = UserDAOImpl.getInstance();
+		userdao.add(googleId, email, isCandidato);
+
+		if (isCandidato) {
+			resp.sendRedirect("/createPrograma");
+		} else {
+			resp.sendRedirect("/main");
 		}
-		return s;
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -60,15 +65,14 @@ public class CreateUserServlet extends HttpServlet {
 			String googleId = user.getUserId();
 			String email = user.getEmail();
 			int level = 0;
-			System.out.println("Creating new AppUser " + googleId + email
-					+ level);
-
-			UserDAO userdao = UserDAOImpl.getInstance();
-			userdao.add(googleId, email, level);
+			System.out.println("Creating new AppUser " + googleId);
 
 			req.getSession().setAttribute("users",
 					new ArrayList<AppUser>(users));
 			alertHTML(out, "Bienvenido " + user.getNickname() + "!!");
+			// resp.sendRedirect("/createUser.jsp");
+			RequestDispatcher view = req.getRequestDispatcher("createUser.jsp");
+			view.forward(req, resp);
 
 		}
 		out.println("<script>location='/main';</script>");

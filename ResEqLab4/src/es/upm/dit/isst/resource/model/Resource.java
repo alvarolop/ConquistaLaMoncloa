@@ -11,71 +11,39 @@ import javax.persistence.Id;
 @Entity
 public class Resource implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title;
-	private String description;
-	private int sessionTime;
-	private List<Long> reserves; 
-	private boolean available;
-	
-	public Resource(String title, String description,int sessionTime) {
-		this.title = title;
-		this.description = description;		
-		this.sessionTime = sessionTime;
-		this.setAvailable(true);
+	private Long user;
+	private List<Long> propuestas;
+
+	public Resource(Long user) {
+		this.user = user;
 	}
 
 	public Long getId() {
 		return id;
 	}
-	
-	public String getTitle() {
-		return title;
+
+	public List<Long> getPropuestas() {
+		return propuestas;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void addPropuesta(Long propuesta) {
+		this.propuestas.add(propuesta);
 	}
 
-	public String getDescription() {
-		return description;
+	public void removePropuesta(String propuestaId) {
+		propuestas.remove(propuestaId);
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public Long getUser() {
+		return user;
 	}
 
-	public List<Long> getReserves() {
-		return reserves;
-	}
-	public void addReserve(Long reserve) {
-		this.reserves.add(reserve);
-	}
-	public int getSessionTime() {
-		System.out.println(sessionTime);
-		return sessionTime;
+	public void setUser(Long user) {
+		this.user = user;
 	}
 
-	public void setSessionTime(int sessionTime) {
-		this.sessionTime = sessionTime;
-	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-
-	public void removeReserve(String reserveId) {
-		reserves.remove(reserveId);
-	}
-
-
-
-} 
+}
