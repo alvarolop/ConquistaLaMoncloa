@@ -31,14 +31,16 @@ public class CreatePropuestaServlet extends HttpServlet {
 		// ////////CREATE RESOURCE///////////////////////
 		String title = checkNull(req.getParameter("title"));
 		String Description = checkNull(req.getParameter("description"));
+		String programa_id = checkNull(req.getParameter("programa_id"));
 
-		ReserveDAO dao = ReserveDAOImpl.getInstance();
-		dao.add(title, Description);
-		PrintWriter out = resp.getWriter();
-		// alertHTML(out, "Creado el recurso " + title + "!!");
+		ReserveDAO propuestasdao = ReserveDAOImpl.getInstance();
+		long propuesta_id = propuestasdao.add(title, Description);
+		System.out.println("createpropuestaservlet" + programa_id);
+
+		ResourceDAO programasdao = ResourceDAOImpl.getInstance();
+		programasdao.addPropuesta(propuesta_id, programa_id);
 		req.getSession().setAttribute("dialogo",
-				"Recurso Creado Correctamente!");
-		out.println("<script>location='/main';</script>");
+				"Propuesta Creada Correctamente!");
 		resp.sendRedirect("/main");
 	}
 
@@ -67,15 +69,16 @@ public class CreatePropuestaServlet extends HttpServlet {
 			urlLinktext = "Logout";
 		}
 		resources = dao.getResources();
+		String programa_id = req.getParameter("programa_id");
 
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("resources",
 				new ArrayList<Resource>(resources));
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);
+		req.getSession().setAttribute("programa_id", programa_id);
 
-		RequestDispatcher view = req
-				.getRequestDispatcher("CreateResourceApplication.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("creaPropuestas.jsp");
 		view.forward(req, resp);
 	}
 }

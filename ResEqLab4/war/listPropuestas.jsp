@@ -60,7 +60,7 @@
 	<div style="width: 100%;">
 		<div class="line"></div>
 		<div class="topLine">
-			<h1 style="text-align: center">Resources</h1>
+			<h1 style="text-align: center">Propuestas</h1>
 			<div style="float: right;"></div>
 		</div>
 	</div>

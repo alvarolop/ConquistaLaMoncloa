@@ -28,5 +28,7 @@ public interface ResourceDAO {
 
 	public void add(long parseLong);
 
-	public void add(Long id, String titulo, String img_url);
+	public long add(Long id, String titulo, String img_url);
+
+	public void addPropuesta(long propuesta_id, String programa_id);
 }

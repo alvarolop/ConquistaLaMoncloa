@@ -36,8 +36,9 @@ public class ReserveDAOImpl implements ReserveDAO {
 
 	@Override
 	public long add(String title, String description) {
-		long propuestaid;
 		synchronized (this) {
+			long propuestaid;
+
 			EntityManager em = EMFService.get().createEntityManager();
 
 			Reserve propuesta = new Reserve(title, description);

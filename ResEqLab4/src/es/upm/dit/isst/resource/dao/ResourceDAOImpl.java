@@ -159,12 +159,31 @@ public class ResourceDAOImpl implements ResourceDAO {
 	}
 
 	@Override
-	public void add(Long id, String titulo, String img_url) {
+	public long add(Long id, String titulo, String img_url) {
 		synchronized (this) {
 			EntityManager em = EMFService.get().createEntityManager();
 			Resource resource = new Resource(id, titulo, img_url);
 			em.persist(resource);
 			em.close();
+			long programa_id = resource.getId();
+
+			return programa_id;
+		}
+	}
+
+	@Override
+	public void addPropuesta(long propuesta_id, String programa_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try {
+			Resource programa = em.find(Resource.class,
+					Long.parseLong(programa_id));
+
+			programa.addPropuesta(propuesta_id);
+			em.merge(programa);
+
+		} finally {
+			em.close();
+
 		}
 	}
 

@@ -96,7 +96,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>VotaPropuesta</servlet-name>
 		<servlet-class>votos.VotoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>PerfilPrograma</servlet-name>
+		<servlet-class>es.upm.dit.isst.resource.PerfilPrograma</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>PerfilPrograma</servlet-name>
+		<url-pattern>/perfilPrograma</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>VotaPropuesta</servlet-name>
 		<url-pattern>/votaPropuesta</url-pattern>

@@ -39,7 +39,8 @@ public class CreateReserveServlet extends HttpServlet {
 //		
 //
 //		ReserveDAO dao = ReserveDAOImpl.getInstance();
-//		//dao.add(starthour, starthour, startdate, startdate, user, resource);
+		// //dao.add(starthour, starthour, startdate, startdate, user,
+		// resource);
 //
 //		resp.sendRedirect("/main");
 	}

@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>Reserves</title>
+<title>programa.titulo</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="utf-8">
 </head>
@@ -56,56 +56,76 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-<h1 style="text-align: center">PARTIDO X</h1>
-<div class="container col-md-12">
+	<h1 style="text-align: center">${programa.titulo}</h1>
+	<div class="container col-md-12">
 
-<div class="col-md-offset-2 col-md-3">
-		<c:if test="${dialogo != null}">
-			<div class="alert alert-success" style="width: 100%;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
+		<div class="col-md-offset-2 col-md-3">
+			<c:if test="${dialogo != null}">
+				<div class="alert alert-success" style="width: 100%;">
+					<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
+				</div>
+			</c:if>
+			<img width='300' align='middle' src='${programa.url_foto}'>
+		</div>
+		<div class="col-md-5">
+
+			<div class="table-responsive">
+				<form>
+
+					<table class="table table-striped" style=""
+						width: 70%;" align="center">
+						<tr>
+							<th>#</th>
+							<th>Categoría</th>
+							<th>Descripción</th>
+							<th>Voto</th>
+						</tr>
+						<%
+							int Variable = 0;
+						%>
+						<c:forEach items="${programa.propuestas}" var="propuesta">
+							<c:forEach items="${propuestas}" var="propuesta2">
+								<c:if test="${propuesta2.id eq propuesta}">
+
+									<%
+										Variable++;
+									%>
+
+									<tr>
+										<td><%=Variable%></td>
+										<td><c:out value="${propuesta2.title}" /></td>
+										<td><c:out value="${propuesta2.description}" /></td>
+
+										<td><div class="checkbox">
+												<label><input type="checkbox" value="<%=Variable%>"></label>
+											</div></td>
+									</tr>
+								</c:if>
+
+							</c:forEach>
+						</c:forEach>
+						<c:if test="${programa.user eq appUser.id}">
+							<td><%=Variable + 1%></td>
+							<td><c:out value="¿Quiere Añadir una propuesta?" /></td>
+							<td><a class="btn btn-primary"
+								href="<c:url value="/createPropuesta?programa_id=${programa.id}"/>">Añadir</a>
+							</td>
+
+						</c:if>
+					</table>
+
+					<button type="submit" class="btn btn-default">Votar</button>
+
+				</form>
 			</div>
-		</c:if>
-			<img width='300' height='300' align='middle' src='http://static.guiainfantil.com/pictures/1111-4-dibujo-para-imprimir-y-colorear-de-una-mano.jpg'>
-</div>
-<div class="col-md-5">
+		</div>
+	</div>
 
-		<div class="table-responsive">
-		<form>
-		
-		<table class="table table-striped"  style=""width: 70%;" align="center">
-			<tr>
-				<th>#</th>
-				<th>Categoría</th>
-				<th>Descripción</th>
-				<th>Voto</th>
-			</tr>
-			<% int Variable=0; %>
-			<c:forEach items="${propuestas}" var="propuesta">
-				<% Variable++; %>
-			
-				<tr>
-					<td><%=Variable%></td>
-					<td><c:out value="${propuesta.title}" /></td>
-					<td><c:out value="${propuesta.description}" /></td>
+	<hr />
 
-					<td><div class="checkbox"><label><input type="checkbox" value="<%=Variable%>"></label></div></td>
-				</tr>
-
-			</c:forEach>
-			</table>
-
-			  <button type="submit" class="btn btn-default">Votar</button>
-			
-			</form>
-			</div>
-			</div>
-			</div>
-
-			<hr />
-
-			<footer> </footer>
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
+	<footer> </footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

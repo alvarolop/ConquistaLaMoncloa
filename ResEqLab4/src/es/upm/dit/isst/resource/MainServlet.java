@@ -51,7 +51,7 @@ public class MainServlet extends HttpServlet {
 		resources = dao.getResources();
 
 		req.getSession().setAttribute("user", user);
-		req.getSession().setAttribute("resources",
+		req.getSession().setAttribute("programas",
 				new ArrayList<Resource>(resources));
 		req.getSession().setAttribute("url", url);
 		req.getSession().setAttribute("urlLinktext", urlLinktext);

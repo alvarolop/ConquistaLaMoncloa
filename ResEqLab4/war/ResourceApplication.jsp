@@ -13,6 +13,7 @@
 <title>Reserves</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="utf-8">
+
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -41,18 +42,14 @@
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active">
-					<a href="<c:url value="${url}"/>"> 
-							<c:choose>
+					<li class="active"><a href="<c:url value="${url}"/>"> <c:choose>
 								<c:when test="${user != null}">
 									<span class="glyphicon glyphicon-off"> </span>
 								</c:when>
 								<c:otherwise>
 									<span class="glyphicon glyphicon-user"> </span>
 								</c:otherwise>
-							</c:choose> <c:out value="${urlLinktext}" />
-							  
-						<span class="caret"></span>					
+							</c:choose> <c:out value="${urlLinktext}" /> <span class="caret"></span>
 					</a></li>
 				</ul>
 			</div>
@@ -64,66 +61,70 @@
 
 
 	<!-- /////////////////////////////////PROGRAMAS///////////////////////////////////// -->
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/photo-gallery.js"></script>
+
 	<div style="width: 100%;">
 		<div class="line"></div>
 		<div class="topLine">
 			<h1 style="text-align: center">Programas</h1>
 		</div>
 	</div>
-	<div class="table-responsive">
-		<table class="table table-striped" style="width: 60%;" align="center">		
-			<c:forEach var="i" begin="0" end="1">
-				<tr>
-					<c:forEach var="i" begin="0" end="4">
-						<td><a href="/perfilPrograma"><img src='http://static.guiainfantil.com/pictures/1111-4-dibujo-para-imprimir-y-colorear-de-una-mano.jpg' width='200' height='133'></a></a></td>
-					</c:forEach>
-				</tr>
-			</c:forEach>
-	</table>
-	</div>
-	</div>
-	<div style="float: right;"><a href="/listProgramas"><span class="glyphicon glyphicon-th">Ver más +</a></div>
-	</div>
-	<!-- 
-	<div >
-	<%int iVariable=0;%>
-		<c:forEach var="i" begin="0" end="11">
-				<% iVariable++; %>
-				<img src='http://static.guiainfantil.com/pictures/1111-4-dibujo-para-imprimir-y-colorear-de-una-mano.jpg' width='200' height='133'> 
-		</c:forEach>
+	<!--	
+</ul>
+			
+-->
+	<div class="container">
 
-	 -->
-	<!-- ////////////////////////////////////PROPUESTAS////////////////////////////////////////// -->
-	
-	
-	<div style="width: 100%;">
-		<div class="line"></div>
+		<ul class="row" list-style="none">
+			<c:forEach items="${programas}" var="programa">
+				<li list-style="none" class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><a
+					href="/perfilPrograma?programa_id=${programa.id}"> <img
+						class="img-responsive" src='${programa.url_foto}'>
+				</a></li>
+
+			</c:forEach>
+			<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><a
+				href="/listPropuestas"><img class="img-responsive"
+					src='http://cdns2.freepik.com/foto-gratis/_428465.jpg'></a></li>
+		</ul>
+
+
+		<!-- ////////////////////////////////////PROPUESTAS////////////////////////////////////////// -->
+
+
+		<div style="width: 100%;">
+			<div class="line"></div>
 			<h1 style="text-align: center">Propuestas</h1>
 			<div style="float: right;"></div>
 		</div>
 	</div>
-	
+
 	<table class="table table-striped" style="width: 60%;" align="center">
+		<tr>
+			<th>Categoría</th>
+			<th>Descripción</th>
+		</tr>
+
+		<c:forEach items="${propuestas}" var="propuesta">
 			<tr>
-				<th>Categoría</th>
-				<th>Descripción</th>
+				<td><c:out value="${propuesta.title}" /></td>
+				<td><c:out value="${propuesta.description}" /></td>
+				<!-- <td><c:out value="${reserve.resource}" /></td>-->
+
+
 			</tr>
-			
-			<c:forEach items="${propuestas}" var="propuesta">
-				<tr>
-					<td><c:out value="${propuesta.title}" /></td>
-					<td><c:out value="${propuesta.description}" /></td>
-					<!-- <td><c:out value="${reserve.resource}" /></td>-->
 
-
-				</tr>
-
-			</c:forEach>
+		</c:forEach>
 	</table>
-	<div style="float: right;"><a href="/listPropuestas"><span class="glyphicon glyphicon-th">Ver más +</a></div>
-	
+	<div style="float: right;">
+		<a href="/listPropuestas"><span class="glyphicon glyphicon-th">Ver
+				más +</a>
+	</div>
+
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
-		
+
 	<div class=container>
 		<c:if test="${dialogo != null}">
 			<div class="alert alert-success" style="width: 100%;">
@@ -136,7 +137,7 @@
 	<hr />
 
 	<footer>
-	<!--
+		<!--
 		<h6 small>
 			You have a total number of
 			<c:out value="${fn:length(resources)}" />

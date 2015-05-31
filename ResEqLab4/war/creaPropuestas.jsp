@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New Resource</title>
+<title>Nueva Propuesta</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -78,7 +78,8 @@
 			</div>
 		</c:if>
 
-		<form action="/createPropuesta" method="post" accept-charset="utf-8">
+		<form action="/createPropuesta?programa_id=${programa_id}"
+			method="post" accept-charset="utf-8">
 			<table class="table" style="width: 60%;" align="center">
 				<tr>
 					<td><label for="title">Title</label></td>

@@ -42,7 +42,7 @@ public class CreateUserServlet extends HttpServlet {
 		String email = user.getEmail();
 		UserDAO userdao = UserDAOImpl.getInstance();
 		userdao.add(googleId, email, isCandidato);
-
+		System.out.println(isCandidato);
 		if (isCandidato) {
 			String titulo = req.getParameter("title");
 			String img_url = req.getParameter("img_url");

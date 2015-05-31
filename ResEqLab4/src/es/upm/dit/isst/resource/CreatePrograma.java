@@ -71,14 +71,21 @@ public class CreatePrograma extends HttpServlet {
 		// ///
 		// Crear programas
 		try {
-			if (usuario.isCandidato()) {
-				String titulo = req.getParameter("titulo");
-				String img_url = req.getParameter("img_url");
+			if (usuario != null)
+				if (usuario.isCandidato()) {
+					String titulo = req.getParameter("titulo");
+					String img_url = req.getParameter("img_url");
 
-				ResourceDAO programadao = ResourceDAOImpl.getInstance();
-				System.out.print(usuario.getId());
-				programadao.add(usuario.getId(), titulo, img_url);
-			}
+					ResourceDAO programadao = ResourceDAOImpl.getInstance();
+					System.out.print(usuario.getId());
+					long programa_id = programadao.add(usuario.getId(), titulo,
+							img_url);
+					System.out.print("programa_id en CreatePrograma"
+							+ programa_id);
+
+					req.getSession().setAttribute("programa_id", programa_id);
+
+				}
 		} finally {
 		}
 
