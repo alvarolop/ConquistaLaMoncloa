@@ -70,8 +70,8 @@
 		<div class="col-md-5">
 
 			<div class="table-responsive">
-				<form>
-
+				<form action="/votaPropuesta" method="post" accept-charset="utf-8"
+					id="formulario">
 					<table class="table table-striped" style=""
 						width: 70%;" align="center">
 						<tr>
@@ -97,7 +97,8 @@
 										<td><c:out value="${propuesta2.description}" /></td>
 
 										<td><div class="checkbox">
-												<label><input type="checkbox" value="<%=Variable%>"></label>
+												<label><input name="votos" type="checkbox"
+													value="${propuesta2.id}"></label>
 											</div></td>
 									</tr>
 								</c:if>

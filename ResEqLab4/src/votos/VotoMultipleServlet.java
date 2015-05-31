@@ -25,29 +25,33 @@ import es.upm.dit.isst.user.dao.UserDAO;
 import es.upm.dit.isst.user.dao.UserDAOImpl;
 import es.upm.dit.isst.user.model.AppUser;
 
-public class VotoServlet extends HttpServlet {
+public class VotoMultipleServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		System.out.println("Adding atributes for GoogleUser ");
+		String availableString = req.getParameter("available");
+		boolean isCandidato = true;
+
+		int a = Integer.parseInt(availableString);
+		if (a == 0)
+			isCandidato = false;
 
 		UserService userService = UserServiceFactory.getUserService();
 		com.google.appengine.api.users.User user = userService.getCurrentUser();
 
-		String votos = req.getParameter("votos");
-		boolean isCandidato = true;
-		VotoDAO votodao = VotoDAOImpl.getInstance();
+		String googleId = user.getUserId();
+		String email = user.getEmail();
+		UserDAO userdao = UserDAOImpl.getInstance();
+		userdao.add(googleId, email, isCandidato);
 
-		String[] votos_id = votos.split(",");
-		for (String propuesta_id : votos_id) {
-			String user_id = user.getUserId();
-			votodao.add(user_id, propuesta_id);
+		if (isCandidato) {
+			resp.sendRedirect("/createPrograma");
+		} else {
+			resp.sendRedirect("/main");
 		}
-
-		resp.sendRedirect("/main");
-
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
