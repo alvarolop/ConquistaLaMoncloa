@@ -31,7 +31,7 @@ public class VotoServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		System.out.println("Adding atributes for GoogleUser ");
+		System.out.println("Voto servlet ");
 
 		UserService userService = UserServiceFactory.getUserService();
 		com.google.appengine.api.users.User user = userService.getCurrentUser();
@@ -39,9 +39,13 @@ public class VotoServlet extends HttpServlet {
 		String votos = req.getParameter("votos");
 		boolean isCandidato = true;
 		VotoDAO votodao = VotoDAOImpl.getInstance();
+		System.out.println(votos);
 
 		String[] votos_id = votos.split(",");
+		System.out.println(votos_id[0]);
+
 		for (String propuesta_id : votos_id) {
+			System.out.print(propuesta_id);
 			String user_id = user.getUserId();
 			votodao.add(user_id, propuesta_id);
 		}
