@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>Reserves</title>
+<title>Propuestas</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="utf-8">
 </head>
@@ -37,7 +37,7 @@
 					<li><a href="/listProgramas"><span
 							class="glyphicon glyphicon-th"> </span> Programas</a></li>
 					<li><a href="/listPropuestas"><span
-							class="glyphicon glyphicon-tasks"> </span> Propuetas</a></li>
+							class="glyphicon glyphicon-tasks"> </span> Propuestas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -56,27 +56,14 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-
-	<div style="width: 100%;">
-		<div class="line"></div>
-		<div class="topLine">
-			<h1 style="text-align: center">Propuestas</h1>
-			<div style="float: right;"></div>
-		</div>
-	</div>
+	<h1 style="text-align: center">Propuestas</h1>
 	<div class=container>
-		<c:if test="${dialogo != null}">
-			<div class="alert alert-success" style="width: 100%;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
-			</div>
-		</c:if>
-
 		<table class="table table-striped" style="width: 60%;" align="center">
 			<tr>
+				<th>Categoría</th>
 				<th>Propuesta</th>
-				<th>Numero de votos</th>
+				<th>Nº votos</th>
 				<th></th>
-
 			</tr>
 
 			<c:forEach var="propuesta" items="${Map}" varStatus="itemsRow">
@@ -84,6 +71,7 @@
 					<c:forEach items="${propuestas}" var="propuesta2">
 						<c:if test="${propuesta.key eq propuesta2.id}">
 							<td><c:out value="${propuesta2.title}" /></td>
+							<td><c:out value="${propuesta2.description}" /></td>
 							<td><c:out value="${propuesta.value}" /></td>
 							<c:choose>
 								<c:when test="${user!=null}">
@@ -111,16 +99,16 @@
 					</c:forEach>
 				</tr>
 			</c:forEach>
-
-
-
-			</div>
-
-			<hr />
-
-			<footer> </footer>
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
+		</table>
+	</div>
+	<footer class=container>
+		<h6 small>
+			Hay un total de 
+			<c:out value="${fn:length(propuestas)}" />
+			propuestas.
+		</h6>
+	</footer>
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package es.upm.dit.isst.resource;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,28 +26,25 @@ public class ListProgramas extends HttpServlet {
 			throws IOException, ServletException {
 
 		ResourceDAO dao = ResourceDAOImpl.getInstance();
+		
+		// /////////////////GESTION USER////////////////////////////////////
 
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
 		String url = userService.createLoginURL("/createUser");
 		String urlLinktext = "Login";
-		List<Resource> resources = new ArrayList<Resource>();
-		boolean userAdmin = false;
-		if (userService.isUserLoggedIn()) {
-			userAdmin = userService.isUserAdmin();
-		}
-		req.getSession().setAttribute("userAdmin", userAdmin);
-
-		System.out.println(userAdmin);
 
 		if (user != null) {
-			// if (true){
-			System.out.println(user);
 			url = userService.createLogoutURL(req.getRequestURI());
 			urlLinktext = "Logout";
 		}
+		// ////////////////Gestion Recursos y reservas//////////////////////
+		
+		List<Resource> resources = new ArrayList<Resource>();
 		resources = dao.getResources();
+		
+		// ///////////////Gestion de req y resp////////////////////////////
 
 		req.getSession().setAttribute("user", user);
 		req.getSession().setAttribute("programas",

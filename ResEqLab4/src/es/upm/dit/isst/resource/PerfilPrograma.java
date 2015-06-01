@@ -46,6 +46,7 @@ public class PerfilPrograma extends HttpServlet {
 		}
 		req.getSession().setAttribute("userAdmin", userAdmin);
 		System.out.println(userAdmin);
+		
 		if (user != null) {
 			// if (true){
 			System.out.println(user);

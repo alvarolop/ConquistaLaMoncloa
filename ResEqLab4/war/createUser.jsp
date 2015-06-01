@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Modify Resource</title>
+<title>Nuevo Usuario</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -47,22 +47,11 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/main"><span class="glyphicon glyphicon-home">
-						</span> Home</a></li>
-					<li><a href="/map"><span class="glyphicon glyphicon-th">
-						</span> Map</a></li>
-					<li><a href="/reserve"><span
-							class="glyphicon glyphicon-tasks"> </span> Reserve</a></li>
-					<c:choose>
-						<c:when test="${userAdmin}">
-							<li><a href="/create"><span
-									class="glyphicon glyphicon-pencil"></span> Create</a></li>
-							<li><a href="/listReserves"><span
-									class="glyphicon glyphicon-tasks"></span> Reserves</a></li>
-							<li><a href="/stats"> <span
-									class="glyphicon glyphicon-tasks"></span> Statistics
-							</a></li>
-						</c:when>
-					</c:choose>
+						</span> Inicio</a></li>
+					<li><a href="/listProgramas"><span
+							class="glyphicon glyphicon-th"> </span> Programas</a></li>
+					<li><a href="/listPropuestas"><span
+							class="glyphicon glyphicon-tasks"> </span> Propuestas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

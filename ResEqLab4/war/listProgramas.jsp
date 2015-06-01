@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>Reserves</title>
+<title>Programas</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="utf-8">
 </head>
@@ -37,7 +37,7 @@
 					<li><a href="/listProgramas"><span
 							class="glyphicon glyphicon-th"> </span> Programas</a></li>
 					<li><a href="/listPropuestas"><span
-							class="glyphicon glyphicon-tasks"> </span> Propuetas</a></li>
+							class="glyphicon glyphicon-tasks"> </span> Propuestas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -56,12 +56,9 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	<div class=container>
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="js/photo-gallery.js"></script>
-	<h1 style="text-align: center">Programas</h1>
 
+	<h1 style="text-align: center">Programas</h1>
+	<div class=container>
 	<table class="table table-striped" style="width: 100%;" align="center">
 			<tr>
 				<th>Nombre del Partido</th>
@@ -78,13 +75,17 @@
 					</c:forEach>
 				</tr>
 		</table>
+	</div>
+	<footer class=container>
+		<h6 small>
+			Hay un total de 
+			<c:out value="${fn:length(programas)}" />
+			programas.
+		</h6>
+	</footer>
 	
-	
-	
-
-	<footer> </footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/photo-gallery.js"></script>
 </body>
 </html>

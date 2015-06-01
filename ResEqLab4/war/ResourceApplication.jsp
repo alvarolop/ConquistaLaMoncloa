@@ -6,11 +6,9 @@
 <%@page isELIgnored="false"%>
 
 <!DOCTYPE html>
-
-
 <html>
 <head>
-<title>Reserves</title>
+<title>Conquista la Moncloa</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta charset="utf-8">
 
@@ -61,22 +59,9 @@
 
 
 	<!-- /////////////////////////////////PROGRAMAS///////////////////////////////////// -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="js/photo-gallery.js"></script>
 
-	<div style="width: 100%;">
-		<div class="line"></div>
-		<div class="topLine">
-			<h1 style="text-align: center">Programas</h1>
-		</div>
-	</div>
-	<!--	
-</ul>
-			
--->
+	<h1 style="text-align: center">Programas</h1>
 	<div class="container">
-
 		<ul class="row" list-style="none">
 			<c:forEach items="${programas}" var="programa">
 				<li list-style="none" class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><a
@@ -86,25 +71,19 @@
 
 			</c:forEach>
 			<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4"><a
-				href="/listPropuestas"><img class="img-responsive"
-					src='http://cdns2.freepik.com/foto-gratis/_428465.jpg'></a></li>
+				href="/listProgramas"><img class="img-responsive"
+					src='http://cdns2.freepik.com/foto-gratis/_428465.jpg'></a>
+			</li>
 		</ul>
-
+	</div>
 
 		<!-- ////////////////////////////////////PROPUESTAS////////////////////////////////////////// -->
 
-
-		<div style="width: 100%;">
-			<div class="line"></div>
-			<h1 style="text-align: center">Propuestas</h1>
-			<div style="float: right;"></div>
-		</div>
-	</div>
-
+	<h1 style="text-align: center">Propuestas</h1>
 	<table class="table table-striped" style="width: 60%;" align="center">
 		<tr>
 			<th>Categoría</th>
-			<th>Descripción</th>
+			<th>Propuesta</th>
 		</tr>
 
 		<c:forEach items="${propuestas}" var="propuesta">
@@ -112,41 +91,16 @@
 				<td><c:out value="${propuesta.title}" /></td>
 				<td><c:out value="${propuesta.description}" /></td>
 				<!-- <td><c:out value="${reserve.resource}" /></td>-->
-
-
 			</tr>
-
 		</c:forEach>
+		<tr>
+			<th>
+			<a href="/listPropuestas">Ver más +</a>
+			</th>
+		</tr>
 	</table>
-	<div style="float: right;">
-		<a href="/listPropuestas"><span class="glyphicon glyphicon-th">Ver
-				más +</a>
-	</div>
-
-	<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
-
-	<div class=container>
-		<c:if test="${dialogo != null}">
-			<div class="alert alert-success" style="width: 100%;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
-			</div>
-		</c:if>
-
-	</div>
-
-	<hr />
-
-	<footer>
-		<!--
-		<h6 small>
-			You have a total number of
-			<c:out value="${fn:length(resources)}" />
-			Resources.
-		</h6>
-	-->
-	</footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/photo-gallery.js"></script>
 </body>
 </html>

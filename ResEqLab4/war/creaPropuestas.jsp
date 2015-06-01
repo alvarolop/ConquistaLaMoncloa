@@ -31,20 +31,11 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/main"><span class="glyphicon glyphicon-home">
-						</span> Home</a></li>
-					<li><a href="/reserve"><span
-							class="glyphicon glyphicon-tasks"> </span> Programas</a></li>
-					<c:choose>
-						<c:when test="${userAdmin}">
-							<li><a href="/create"><span
-									class="glyphicon glyphicon-pencil"></span> Crear Programa</a></li>
-							<li><a href="/listReserves"><span
-									class="glyphicon glyphicon-tasks"></span> Propuestas</a></li>
-							<li><a href="/stats"> <span
-									class="glyphicon glyphicon-tasks"></span> Statistics
-							</a></li>
-						</c:when>
-					</c:choose>
+						</span> Inicio</a></li>
+					<li><a href="/listProgramas"><span
+							class="glyphicon glyphicon-th"> </span> Programas</a></li>
+					<li><a href="/listPropuestas"><span
+							class="glyphicon glyphicon-tasks"> </span> Propuestas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -72,12 +63,6 @@
 		</div>
 	</div>
 	<div class="container">
-		<c:if test="${dialogo != null}">
-			<div class="alert alert-success" style="width: 100%;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
-			</div>
-		</c:if>
-
 		<form action="/createPropuesta?programa_id=${programa_id}"
 			method="post" accept-charset="utf-8">
 			<table class="table" style="width: 60%;" align="center">
@@ -100,11 +85,9 @@
 				</tr>
 				<tr>
 					<td valign="description"><label for="description">Description</label></td>
-					<td><textarea class="form-control" rows="4" cols="50"
-							name="description" id="description"></textarea></td>
+					<td><textarea class="form-control" rows="3" cols="50"
+							name="description" id="description" pattern=".{1,10}." required title="Introduce una propuesta de con un número de caracteres entre 1 y 140"></textarea></td>
 				</tr>
-
-
 				<tr>
 					<td colspan="2" align="right"><input type="submit"
 						class="btn btn-default" value="Create" /></td>

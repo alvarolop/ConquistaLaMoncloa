@@ -10,9 +10,8 @@
 
 <html>
 <head>
-<title>programa.titulo</title>
+<title>${programa.titulo}</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="js/twitterscript.js"></script>
 <meta charset="utf-8">
 </head>
 <body>
@@ -58,78 +57,61 @@
 	</nav>
 
 	<h1 style="text-align: center">${programa.titulo}</h1>
-	<div class="container col-md-12">
-
-		<div class="col-md-offset-2 col-md-3">
-			<c:if test="${dialogo != null}">
-				<div class="alert alert-success" style="width: 100%;">
-					<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
-				</div>
-			</c:if>
-			<img width='300' align='middle' src='${programa.url_foto}'>
-		</div>
-		<div class="col-md-5">
-
+	
+	<div class="col-md-offset-2 col-md-3">
+		<img width='300' align='middle' src='${programa.url_foto}'>
+	</div>
+	<div class="col-md-5">
+		<a href="https://twitter.com/share" class="twitter-share-button"
+			data-text="Este es mi programa en Conquista la Moncloa">Compartir</a>
+		<br>
+		<form action="/votaPropuesta" method="post" accept-charset="utf-8"
+				id="formulario">
 			<div class="table-responsive">
-				<form action="/votaPropuesta" method="post" accept-charset="utf-8"
-					id="formulario">
-					<table class="table table-striped" style=""
-						width: 70%;" align="center">
-						<tr>
-							<th>#</th>
-							<th>Categoría</th>
-							<th>Descripción</th>
-							<th>Voto</th>
-						</tr>
-						<%
-							int Variable = 0;
-						%>
-						<c:forEach items="${programa.propuestas}" var="propuesta">
-							<c:forEach items="${propuestas}" var="propuesta2">
-								<c:if test="${propuesta2.id eq propuesta}">
+				<table class="table table-striped" style=""	width: 70%;" align="center">
+					<tr>
+						<th>#</th>
+						<th>Categoría</th>
+						<th>Descripción</th>
+						<th>Voto</th>
+					</tr>
+					<% int Variable = 0;%>
+					<c:forEach items="${programa.propuestas}" var="propuesta">
+						<c:forEach items="${propuestas}" var="propuesta2">
+							<c:if test="${propuesta2.id eq propuesta}">
+								<% Variable++;%>
 
-									<%
-										Variable++;
-									%>
+								<tr>
+									<td><%=Variable%></td>
+									<td><c:out value="${propuesta2.title}" /></td>
+									<td><c:out value="${propuesta2.description}" /></td>
 
-									<tr>
-										<td><%=Variable%></td>
-										<td><c:out value="${propuesta2.title}" /></td>
-										<td><c:out value="${propuesta2.description}" /></td>
+									<td><div class="checkbox">
+											<label><input name="votos" type="checkbox"
+												value="${propuesta2.id}"></label>
+										</div></td>
+								</tr>
+							</c:if>
 
-										<td><div class="checkbox">
-												<label><input name="votos" type="checkbox"
-													value="${propuesta2.id}"></label>
-											</div></td>
-									</tr>
-								</c:if>
-
-							</c:forEach>
 						</c:forEach>
-						<a href="https://twitter.com/share" class="twitter-share-button"
-							data-text="Este es mi programa en Conquista la Moncloa">Compartir</a>
-						<c:if test="${programa.user eq appUser.id}">
-							<td><%=Variable + 1%></td>
-							<td><c:out value="¿Quiere Añadir una propuesta?" /></td>
-							<td><a class="btn btn-primary"
-								href="<c:url value="/createPropuesta?programa_id=${programa.id}"/>">Añadir</a>
-							</td>
-
-						</c:if>
-					</table>
-
-					<button type="submit" class="btn btn-default">Votar</button>
-
-				</form>
+					</c:forEach>
+					<c:if test="${programa.user eq appUser.id}">
+						<td><%=Variable + 1%></td>
+						<td><c:out value="¿Quiere Añadir una propuesta?" /></td>
+						<td><a class="btn btn-primary"
+							href="<c:url value="/createPropuesta?programa_id=${programa.id}"/>">Añadir</a>
+						</td>
+					</c:if>
+				</table>
+				<button type="submit" class="btn btn-default">Votar</button>
 			</div>
-		</div>
+		</form>
+
 	</div>
 
-	<hr />
-
-	<footer> </footer>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/twitterscript.js"></script>
 </body>
 </html>
