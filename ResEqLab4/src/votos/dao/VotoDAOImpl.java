@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import votos.model.Voto;
+import es.upm.dit.isst.reserve.model.Reserve;
 import es.upm.dit.isst.resource.dao.EMFService;
 import es.upm.dit.isst.resource.model.Resource;
 import es.upm.dit.isst.user.model.AppUser;
@@ -70,7 +71,7 @@ public class VotoDAOImpl implements VotoDAO {
 	}
 
 	@Override
-	public void remove(String voto_id) {
+	public void remove(long voto_id) {
 		EntityManager em = EMFService.get().createEntityManager();
 		try {
 			Voto voto = em.find(Voto.class, voto_id);
@@ -91,5 +92,28 @@ public class VotoDAOImpl implements VotoDAO {
 			if (voto.getPropuesta_id().equals(propuesta_id))
 				cuenta++;
 		return cuenta;
+	}
+
+	@Override
+	public String getVotoId(String user_id, String propuesta_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Voto t ");
+		System.out.println(q.getResultList());
+		List<Voto> votos = q.getResultList();
+		for (Voto voto : votos) {
+			if (voto.getPropuesta_id().equals(propuesta_id)
+					&& voto.getUser_id().equals(user_id)) {
+				return Long.toString(voto.get_id());
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<Voto> getVotos() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from Voto t ");
+		List<Voto> votos = q.getResultList();
+		return votos;
 	}
 }

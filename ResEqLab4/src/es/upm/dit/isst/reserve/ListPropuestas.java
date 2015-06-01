@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import votos.dao.VotoDAO;
 import votos.dao.VotoDAOImpl;
+import votos.model.Voto;
 
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -72,14 +73,29 @@ public class ListPropuestas extends HttpServlet {
 
 			// ///////////////Gestion de req y resp////////////////////////////
 			VotoDAO votodao = VotoDAOImpl.getInstance();
-
+			List<Voto> listvotos = votodao.getVotos();
 			Map<Long, Integer> numVotos = new HashMap<Long, Integer>();
+			Map<Long, String> isVotada = new HashMap<Long, String>();
 
 			for (Reserve propuesta : reserves) {
 				int votos = votodao.numVotoPropuesta(Long.toString(propuesta
 						.getId()));
 				numVotos.put(propuesta.getId(), Integer.valueOf(votos));
+				isVotada.put(propuesta.getId(), "0");
+				for (Voto voto : votodao.getVotos()) {
+					if (voto.getUser_id().equals(user.getUserId())) {
+						System.out.println(voto.getPropuesta_id() + " "
+								+ Long.toString(propuesta.getId()));
 
+						if (voto.getPropuesta_id().equals(
+								Long.toString(propuesta.getId()))) {
+							System.out.println("Coincide propuestaid");
+
+							isVotada.put(propuesta.getId(), "1");
+						}
+					}
+				}
+				System.out.println(isVotada.get(propuesta.getId()));
 			}
 
 			req.getSession().setAttribute("user", user);
@@ -89,6 +105,7 @@ public class ListPropuestas extends HttpServlet {
 			req.getSession().setAttribute("url", url);
 			req.getSession().setAttribute("urlLinktext", urlLinktext);
 			req.setAttribute("Map", numVotos);
+			req.setAttribute("isVotada", isVotada);
 
 			RequestDispatcher view = req
 					.getRequestDispatcher("listPropuestas.jsp");

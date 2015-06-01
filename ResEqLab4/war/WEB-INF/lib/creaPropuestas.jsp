@@ -82,21 +82,9 @@
 			method="post" accept-charset="utf-8">
 			<table class="table" style="width: 60%;" align="center">
 				<tr>
-					<td><label for="title">Categoría</label></td>
-					<td>
-						<select class="form-control" type="select" name="title"
-						id="title" size="10">
-						  <option value="Paro">Paro</option>
-						  <option value="Corrupción y Fraude">Corrupción y Fraude</option>
-						  <option value="Economía">Economía</option>
-						  <option value="Política y Partidos">Política y Partidos</option>
-						  <option value="Sanidad">Sanidad</option>
-						  <option value="Problemas Sociales">Problemas Sociales</option>
-						  <option value="Educación">Educación</option>
-						  <option value="Recortes">Recortes</option>
-						  <option value="Deshaucios">Deshaucios</option>
-						  <option value="Recibo de la luz">Recibo de la luz</option>
-						</select></td>
+					<td><label for="title">Title</label></td>
+					<td><input class="form-control" type="text" name="title"
+						id="title" size="65" /></td>
 				</tr>
 				<tr>
 					<td valign="description"><label for="description">Description</label></td>

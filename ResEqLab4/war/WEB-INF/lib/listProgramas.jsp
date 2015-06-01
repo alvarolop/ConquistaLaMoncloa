@@ -60,7 +60,7 @@
 	<div style="width: 100%;">
 		<div class="line"></div>
 		<div class="topLine">
-			<h1 style="text-align: center">Propuestas</h1>
+			<h1 style="text-align: center">Resources</h1>
 			<div style="float: right;"></div>
 		</div>
 	</div>
@@ -73,47 +73,27 @@
 
 		<table class="table table-striped" style="width: 60%;" align="center">
 			<tr>
-				<th>Propuesta</th>
-				<th>Numero de votos</th>
-				<th></th>
-
+				<th>Title</th>
+				<th>Description</th>
+				<c:choose>
+					<c:when test="${userAdmin}">
+						<th>Action</th>
+						<th></th>
+					</c:when>
+				</c:choose>
 			</tr>
+			<c:forEach items="${programas}" var="programa">
 
-			<c:forEach var="propuesta" items="${Map}" varStatus="itemsRow">
+
 				<tr>
-					<c:forEach items="${propuestas}" var="propuesta2">
-						<c:if test="${propuesta.key eq propuesta2.id}">
-							<td><c:out value="${propuesta2.title}" /></td>
-							<td><c:out value="${propuesta.value}" /></td>
-							<c:choose>
-								<c:when test="${user!=null}">
-									<c:forEach var="propuesta3" items="${isVotada}"
-										varStatus="itemsRow">
+					<td><c:out value="${programa.titulo}" /></td>
 
-										<c:if test="${propuesta3.key eq propuesta2.id}">
+					<!-- <td><c:out value="${reserve.resource}" /></td>-->
 
-											<c:if test="${propuesta3.value eq '0'}">
 
-												<td><a class="btn btn-primary"
-													href="<c:url value="/votaPropuesta?propuesta_id=${propuesta.key}"/>">Vota</a>
-											</c:if>
-											<c:if test="${propuesta3.value eq '1'}">
-												<td><a class="btn btn-danger"
-													href="<c:url value="/removeVoto?propuesta_id=${propuesta.key}"/>">Borrar</a>
-											</c:if>
-										</c:if>
-
-									</c:forEach>
-
-								</c:when>
-							</c:choose>
-						</c:if>
-					</c:forEach>
 				</tr>
+
 			</c:forEach>
-
-
-
 			</div>
 
 			<hr />

@@ -56,51 +56,35 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-
-	<div style="width: 100%;">
-		<div class="line"></div>
-		<div class="topLine">
-			<h1 style="text-align: center">Resources</h1>
-			<div style="float: right;"></div>
-		</div>
-	</div>
 	<div class=container>
-		<c:if test="${dialogo != null}">
-			<div class="alert alert-success" style="width: 100%;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a> <strong>${dialogo}</strong>
-			</div>
-		</c:if>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/photo-gallery.js"></script>
+	<h1 style="text-align: center">Programas</h1>
 
-		<table class="table table-striped" style="width: 60%;" align="center">
+	<table class="table table-striped" style="width: 100%;" align="center">
 			<tr>
-				<th>Title</th>
-				<th>Description</th>
-				<c:choose>
-					<c:when test="${userAdmin}">
-						<th>Action</th>
-						<th></th>
-					</c:when>
-				</c:choose>
+				<th>Nombre del Partido</th>
+				<th>Icono Partido</th>
 			</tr>
-			<c:forEach items="${programas}" var="programa">
-
-
 				<tr>
-					<td><c:out value="${programa.titulo}" /></td>
-
-					<!-- <td><c:out value="${reserve.resource}" /></td>-->
-
-
+					<c:forEach items="${programas}" var="programa">
+						<td><c:out value="${programa.titulo}" /></td>
+						<td><a
+					href="/perfilPrograma?programa_id=${programa.id}"> <img
+						class="img-responsive" src='${programa.url_foto}' WIDTH=200 HEIGHT=200>
+						</a></td>
+						<tr></tr>
+					</c:forEach>
 				</tr>
+		</table>
+	
+	
+	
 
-			</c:forEach>
-			</div>
-
-			<hr />
-
-			<footer> </footer>
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<script src="js/bootstrap.min.js"></script>
+	<footer> </footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

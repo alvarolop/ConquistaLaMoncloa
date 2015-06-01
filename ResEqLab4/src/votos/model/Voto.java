@@ -26,6 +26,10 @@ public class Voto implements Serializable {
 
 	}
 
+	public Long get_id() {
+		return id;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}

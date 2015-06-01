@@ -12,6 +12,7 @@
 <head>
 <title>programa.titulo</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/twitterscript.js"></script>
 <meta charset="utf-8">
 </head>
 <body>
@@ -37,7 +38,7 @@
 					<li><a href="/listProgramas"><span
 							class="glyphicon glyphicon-th"> </span> Programas</a></li>
 					<li><a href="/listPropuestas"><span
-							class="glyphicon glyphicon-tasks"> </span> Propuetas</a></li>
+							class="glyphicon glyphicon-tasks"> </span> Propuestas</a></li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -105,6 +106,8 @@
 
 							</c:forEach>
 						</c:forEach>
+						<a href="https://twitter.com/share" class="twitter-share-button"
+							data-text="Este es mi programa en Conquista la Moncloa">Compartir</a>
 						<c:if test="${programa.user eq appUser.id}">
 							<td><%=Variable + 1%></td>
 							<td><c:out value="¿Quiere Añadir una propuesta?" /></td>

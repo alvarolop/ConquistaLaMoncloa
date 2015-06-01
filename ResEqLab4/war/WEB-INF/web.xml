@@ -100,7 +100,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<servlet-name>PerfilPrograma</servlet-name>
 		<servlet-class>es.upm.dit.isst.resource.PerfilPrograma</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RemoveVoto</servlet-name>
+		<servlet-class>votos.RemoveVotoServlet</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>RemoveVoto</servlet-name>
+		<url-pattern>/removeVoto</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PerfilPrograma</servlet-name>
 		<url-pattern>/perfilPrograma</url-pattern>
